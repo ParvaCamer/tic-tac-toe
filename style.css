@@ -4,10 +4,15 @@ body {
 body .container {
   height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 }
-body .container .game-box {
+body .container .game-board {
+  height: 70vh;
+  display: flex;
+}
+body .container .game-board .game-box {
   border: 1px solid black;
   height: 100px;
   width: 100px;
@@ -16,7 +21,7 @@ body .container .game-box {
   align-items: center;
   justify-content: center;
 }
-body .container .circle {
+body .container .game-board .circle {
   position: absolute;
   border: 1px solid black;
   border-radius: 50%;
@@ -28,18 +33,18 @@ body .container .circle {
   right: 0;
   margin: auto;
 }
-body .container .cross::before,
-body .container .cross::after {
+body .container .game-board .cross::before,
+body .container .game-board .cross::after {
   content: "";
   display: block;
   width: 75px;
   height: 2px;
   background-color: black;
 }
-body .container .cross::before {
+body .container .game-board .cross::before {
   transform: rotate(45deg);
 }
-body .container .cross::after {
+body .container .game-board .cross::after {
   transform: rotate(-45deg);
 }
 
