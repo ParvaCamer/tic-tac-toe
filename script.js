@@ -16,14 +16,17 @@ let array = {
     'circle': [],
     'cross': []
 };
+$('.sign').addClass(playerWhoPlay)
 
 $('.game-box').click(function () {
     if (play && $(this).hasClass("empty-box")) {
+        $('.sign').removeClass(playerWhoPlay);
         $(this).removeClass("empty-box").addClass(playerWhoPlay + "-box").append("<div class=" + playerWhoPlay + "></div>");;
         let value = $(this).data('value');
         array[playerWhoPlay].push(value);
         checkCombination(array[playerWhoPlay]);
         (playerWhoPlay = [players[1], players[1] = playerWhoPlay][0]);
+        $('.sign').addClass(playerWhoPlay);
     }
 })
 
@@ -32,7 +35,8 @@ function checkCombination(arrayToCheck) {
         let isMatch = combination[i].every(element =>
             arrayToCheck.includes(element));
         if (isMatch) {
-            console.log('fini ', playerWhoPlay, ' gagne');
+            $('.sign').removeClass(playerWhoPlay);
+            $('.isOver').html('Game over ! Player ' + playerWhoPlay + ' win !')
             play = false;
             break;
         }

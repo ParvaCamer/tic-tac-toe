@@ -8,9 +8,73 @@ body .container {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  position: relative;
 }
 body .container img {
   width: 650px;
+}
+body .container .div-flex {
+  display: flex;
+  width: 70%;
+  justify-content: space-evenly;
+}
+body .container .info {
+  height: 400px;
+  width: 250px;
+  background-color: #f2bb05;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+body .container .info section {
+  height: 200px;
+  width: 150px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #dd7c64;
+  border-radius: 10px;
+}
+body .container .info section .circle {
+  border: 20px solid #124E78;
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+body .container .info section .cross {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+body .container .info section .cross::before,
+body .container .info section .cross::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 12px;
+  background-color: #6E0E0A;
+}
+body .container .info section .cross::before {
+  transform: rotate(45deg);
+}
+body .container .info section .cross::after {
+  transform: rotate(-45deg);
+}
+body .container .info .isOver {
+  width: 150px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #dd7c64;
 }
 body .container .game-board {
   height: 400px;
@@ -22,7 +86,7 @@ body .container .game-board {
   background-color: #f2bb05;
 }
 body .container .game-board .game-box {
-  background-color: #F06543;
+  background-color: #dd7c64;
   border-radius: 10px;
   margin: 10px;
   height: 100px;
@@ -44,19 +108,27 @@ body .container .game-board .circle {
   right: 0;
   margin: auto;
 }
+body .container .game-board .cross {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 body .container .game-board .cross::before,
 body .container .game-board .cross::after {
   content: "";
-  display: block;
-  width: 90px;
-  height: 15px;
+  position: absolute;
+  width: 100%;
+  height: 12px;
   background-color: #6E0E0A;
 }
 body .container .game-board .cross::before {
-  transform: rotate(45deg) translateY(6px) translateX(5px);
+  transform: rotate(45deg);
 }
 body .container .game-board .cross::after {
-  transform: rotate(-45deg) translateX(5px);
+  transform: rotate(-45deg);
 }
 
 /*# sourceMappingURL=style.css.map */
