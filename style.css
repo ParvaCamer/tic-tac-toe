@@ -38,15 +38,12 @@ body .container .info section {
   border-radius: 10px;
 }
 body .container .info section .circle {
+  position: relative;
   border: 20px solid #124E78;
   border-radius: 50%;
-  height: 35px;
-  width: 35px;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
+  height: 50px;
+  width: 50px;
+  margin: 0;
 }
 body .container .info section .cross {
   position: relative;
@@ -70,7 +67,18 @@ body .container .info section .cross::before {
 body .container .info section .cross::after {
   transform: rotate(-45deg);
 }
+body .container .info .rule {
+  width: 150px;
+  height: 50px;
+  border-radius: 10px;
+  border: none;
+  background-color: #dd7c64;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
 body .container .info .isOver {
+  visibility: hidden;
   width: 150px;
   padding: 10px;
   border-radius: 10px;

@@ -1,6 +1,7 @@
 $background-box: #f2bb05;
 $color-box: #dd7c64;
 $border-radius: 10px;
+$width-element: 150px;
 body {
     height: 90vh;
     background-color: #F0F0C9;
@@ -35,7 +36,7 @@ body {
 
             section {
                 height: 200px;
-                width: 150px;
+                width: $width-element;
                 display: flex;
                 align-items: center;
                 flex-direction: column;
@@ -43,15 +44,12 @@ body {
                 border-radius: $border-radius;
 
                 .circle {
+                    position: relative;
                     border: 20px solid #124E78;
                     border-radius: 50%;
-                    height: 35px;
-                    width: 35px;
-                    top: 0;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                    margin: auto;
+                    height: 50px;
+                    width: 50px;
+                    margin: 0;
                 }
 
                 .cross {
@@ -81,8 +79,20 @@ body {
                 }
             }
 
+            .rule {
+                width: $width-element;
+                height: 50px;
+                border-radius: $border-radius;
+                border: none;
+                background-color: $color-box;
+                font-size: 1.1rem;
+                font-weight: bold;
+                cursor: pointer;
+            }
+
             .isOver {
-                width: 150px;
+                visibility: hidden;
+                width: $width-element;
                 padding: 10px;
                 border-radius: $border-radius;
                 background-color: $color-box;
