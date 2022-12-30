@@ -30,18 +30,44 @@ function AIorHuman() {
     }
 }
 
+function startNewGame() {
+    $('.sign').removeClass(playerWhoPlay);
+    play = true;
+    isPlayingAgainst = rule[0];
+    playerWhoPlay = players[0];
+    array = { 'circle': [], 'cross': [] };
+    $('.new-game').css('display', 'none');
+    $('.rule').css('display', 'block').prop('disabled', false).html('AI vs ME');
+    $('.game-box').each(function() {
+        $(this).empty();
+    })
+    $('.game-box').removeClass('circle-box').removeClass('cross-box').addClass('empty-box');
+    $('.isOver').css('visibility', "hidden");
+    $('.sign').addClass(playerWhoPlay);
+}
+
 $('.game-box').click(function () {
     $('.rule').prop('disabled', true);
     if (play && $(this).hasClass("empty-box") && isPlayingAgainst === 'human') {
+        console.log('humain')
         $('.sign').removeClass(playerWhoPlay);
         playGame($(this));
         (playerWhoPlay = [players[1], players[1] = playerWhoPlay][0]);
         $('.sign').addClass(playerWhoPlay);
     }
     if (play && $(this).hasClass("empty-box") && isPlayingAgainst === 'AI') {
-        console.log('oui')
+        console.log('ia')
         playGame($(this));
+        //faire l'ia ici
+        const box = $('.game-box');
+        const boxArray = box.get();
+        let random = Math.floor(Math.random() * boxArray.length)
+        if (boxArray[random].hasClass('empty-box')) {
+            console.log('vide')
+        }
+        console.log(array[random])
     }
+    console.log(playerWhoPlay)
 })
 
 function playGame(div) {
@@ -57,6 +83,8 @@ function checkCombination(arrayToCheck) {
             arrayToCheck.includes(element));
         if (isMatch) {
             $('.isOver').html('Game over ! Player ' + playerWhoPlay + ' win !').css('visibility', "visible");
+            $('.new-game').css('display', 'block');
+            $('.rule').css('display', 'none');
             play = false;
             break;
         }

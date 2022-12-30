@@ -67,7 +67,8 @@ body .container .info section .cross::before {
 body .container .info section .cross::after {
   transform: rotate(-45deg);
 }
-body .container .info .rule {
+body .container .info .rule,
+body .container .info .new-game {
   width: 150px;
   height: 50px;
   border-radius: 10px;
@@ -77,10 +78,14 @@ body .container .info .rule {
   font-weight: bold;
   cursor: pointer;
 }
+body .container .info .new-game {
+  display: none;
+}
 body .container .info .isOver {
   visibility: hidden;
   width: 150px;
   padding: 10px;
+  margin: 0;
   border-radius: 10px;
   background-color: #dd7c64;
 }

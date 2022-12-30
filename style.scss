@@ -79,7 +79,8 @@ body {
                 }
             }
 
-            .rule {
+            .rule,
+            .new-game {
                 width: $width-element;
                 height: 50px;
                 border-radius: $border-radius;
@@ -90,10 +91,15 @@ body {
                 cursor: pointer;
             }
 
+            .new-game {
+                display: none;
+            }            
+
             .isOver {
                 visibility: hidden;
                 width: $width-element;
                 padding: 10px;
+                margin: 0;
                 border-radius: $border-radius;
                 background-color: $color-box;
             }
