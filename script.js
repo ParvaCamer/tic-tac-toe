@@ -61,11 +61,13 @@ $('.game-box').click(function () {
         //faire l'ia ici
         const box = $('.game-box');
         const boxArray = box.get();
-        let random = Math.floor(Math.random() * boxArray.length)
-        if (boxArray[random].hasClass('empty-box')) {
-            console.log('vide')
+        const randomIndex = Math.floor(Math.random() * boxArray.length);
+        const randomDiv = boxArray[randomIndex];
+        const hasClass = randomDiv.hasClass('empty-box');
+        console.log('div : ', randomDiv)
+        if (hasClass) {
+            console.log('possède')
         }
-        console.log(array[random])
     }
     console.log(playerWhoPlay)
 })
