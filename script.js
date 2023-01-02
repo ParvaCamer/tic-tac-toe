@@ -19,6 +19,7 @@ let array = {
     'cross': []
 };
 $('.sign').addClass(playerWhoPlay);
+let timesAICanPlay = 5;
 
 function AIorHuman() {
     if (isPlayingAgainst === 'AI') {
@@ -38,39 +39,59 @@ function startNewGame() {
     array = { 'circle': [], 'cross': [] };
     $('.new-game').css('display', 'none');
     $('.rule').css('display', 'block').prop('disabled', false).html('AI vs ME');
-    $('.game-box').each(function() {
+    $('.game-box').each(function () {
         $(this).empty();
     })
     $('.game-box').removeClass('circle-box').removeClass('cross-box').addClass('empty-box');
     $('.isOver').css('visibility', "hidden");
     $('.sign').addClass(playerWhoPlay);
+    timesAICanPlay = 5;
 }
 
 $('.game-box').click(function () {
     $('.rule').prop('disabled', true);
     if (play && $(this).hasClass("empty-box") && isPlayingAgainst === 'human') {
-        console.log('humain')
         $('.sign').removeClass(playerWhoPlay);
         playGame($(this));
         (playerWhoPlay = [players[1], players[1] = playerWhoPlay][0]);
         $('.sign').addClass(playerWhoPlay);
     }
     if (play && $(this).hasClass("empty-box") && isPlayingAgainst === 'AI') {
-        console.log('ia')
         playGame($(this));
-        //faire l'ia ici
-        const box = $('.game-box');
-        const boxArray = box.get();
-        const randomIndex = Math.floor(Math.random() * boxArray.length);
-        const randomDiv = boxArray[randomIndex];
-        const hasClass = randomDiv.hasClass('empty-box');
-        console.log('div : ', randomDiv)
-        if (hasClass) {
-            console.log('possède')
+        if (play) {
+            setTimeout(() => {
+                runTheAI();
+            }, 500);
         }
     }
-    console.log(playerWhoPlay)
 })
+
+function runTheAI() {
+    timesAICanPlay--;
+    if (timesAICanPlay > 0) {
+        const box = $('.game-box');
+        const boxArray = box.get();
+        let randomIndex = Math.floor(Math.random() * boxArray.length);
+        let randomDiv = boxArray[randomIndex];
+        let hasClass = randomDiv.classList.contains('empty-box');
+
+        while (!hasClass) { //check if the div is a empty-box
+            randomIndex = Math.floor(Math.random() * boxArray.length);
+            randomDiv = boxArray[randomIndex];
+            hasClass = randomDiv.classList.contains('empty-box');
+        }
+
+        //create the box and push it into the array
+        randomDiv.classList.remove('empty-box');
+        randomDiv.classList.add('cross-box');
+        let newDiv = document.createElement('div');
+        newDiv.classList.add('cross');
+        randomDiv.appendChild(newDiv);
+        let value = randomDiv.dataset.value;
+        array['cross'].push(parseInt(value));
+    }
+    checkCombination(array['cross']);
+}
 
 function playGame(div) {
     div.removeClass("empty-box").addClass(playerWhoPlay + "-box").append("<div class=" + playerWhoPlay + "></div>");;
@@ -89,6 +110,10 @@ function checkCombination(arrayToCheck) {
             $('.rule').css('display', 'none');
             play = false;
             break;
+        } else if (timesAICanPlay == 0) {
+            $('.isOver').html('Game over ! Nobody win.').css('visibility', "visible");
+            $('.new-game').css('display', 'block');
+            $('.rule').css('display', 'none');
         }
     }
 }

@@ -88,6 +88,7 @@ body .container .info .isOver {
   margin: 0;
   border-radius: 10px;
   background-color: #dd7c64;
+  text-align: center;
 }
 body .container .game-board {
   height: 400px;
