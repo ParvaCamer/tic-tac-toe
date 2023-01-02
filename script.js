@@ -61,7 +61,7 @@ $('.game-box').click(function () {
         if (play) {
             setTimeout(() => {
                 runTheAI();
-            }, 500);
+            }, 250);
         }
     }
 })
